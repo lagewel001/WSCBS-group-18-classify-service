@@ -1,0 +1,37 @@
+name: nlp
+version: 1.0.0
+kind: ecu
+
+# Files included in the container package (entrypoint script, trained model and vectorizer)
+files:
+- classify.py
+- finalized_model.sav
+- vectorizer.pickle
+
+# Task entrypoint
+entrypoint:
+  kind: task
+  exec: classify.py
+
+# Dependencies (as Ubuntu packages)
+dependencies:
+- python3
+- python3-yaml
+- python3-pandas
+- python3-nltk
+- python3-sklearn
+- python3-certifi  # certifi needed to install the NLTK dependencies
+
+# Extra container RUN command to install the dependencies needed for NLTK (certifi needed)
+install:
+- python3 -m nltk.downloader punkt stopwords wordnet
+
+actions:
+  disaster:
+    command:
+    input:
+    - name: input
+      type: string
+    output:
+    - name: output
+      type: string
