@@ -145,4 +145,4 @@ VM must have at least 8GB of memory.
     chmod 644 ~/.kube/config
     ```
    
-Congratulations! After having run these steps you cluster should be up and running for using Brane.
+Congratulations! After having run these steps your cluster should be up and running for using Brane.
